@@ -1,0 +1,26 @@
+{
+  "name": "trivia-app",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend && yarn start",
+    "backend": "cd backend && nodemon app.js",
+    "dev": "concurrently \"npm run frontend\" \"npm run  backend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "dependencies": {
+    "yarn": "^1.22.22"
+  }
+}
