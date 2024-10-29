@@ -1,0 +1,9 @@
+[service "frontend"]
+path = "/frontend"
+start = "npm start"                  
+build = "npm install && npm run build" 
+
+[service "backend"]
+path = "/backend"
+start = "npm start"                  
+build = "npm install"   
