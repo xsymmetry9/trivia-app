@@ -1,15 +1,15 @@
 // server/app.js
-import express, { json } from 'express';
+const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5000;
-import routes from "./routes/userRoutes";
-import cors from "cors";
+const routes = require("./routes/userRoutes");
+const cors = require("cors");
 const corsOption = {
   origin: ["http://localhost:3000"],
 };
 app.use(cors(corsOption));
 
-app.use(json());
+app.use(express.json());
 app.use("/", routes);
 
 console.log("post something");
