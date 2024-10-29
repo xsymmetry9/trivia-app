@@ -1,7 +1,7 @@
-import App from "./App";
-import {loadTriviaQuestions} from "./loader";
-import Game from "./pages/Game";
-import Questions from "./pages/Questions";
+import App from "../App";
+import {loadTriviaQuestions} from "../loader/loader";
+import Game from "../pages/Game";
+import Questions from "../pages/Questions";
 
 const routes = [
     {

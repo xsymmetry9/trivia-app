@@ -7,6 +7,8 @@ import Message from "../components/Message.jsx";
 import Question from "../components/Question.jsx";
 import GameOver from "../components/GameOver.jsx";
 import { userLoader } from '../components/FetchUsers.jsx';
+import Loading from "../components/Loading.jsx";
+import HandleError from '../components/HandleError.jsx';
 
 const Game = () =>{
     const [userId, setUserId] = useState("");
@@ -17,6 +19,8 @@ const Game = () =>{
     const [isSubmitBtnHidden, setIsSubmitBtnHidden] = useState(false);
     const [message, setMessage] = useState("");
     const [questionList, setQuestionList] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     //Loads the questions via useContext
     const {questions} = useContext(AppContext);
@@ -76,11 +80,15 @@ const Game = () =>{
                     const newRandomNumber = generateIndex();
                     setQuestionIndex(newRandomNumber); 
 
+                    setLoading(false);
+
                 } else {
                     console.log("No user found.");
+                    setError("No user found");
                 }
             } catch (err){
-                console.log("There was an error:", err);
+                setError("Failed to load data. Please try again later.");
+                setLoading(false);
             }
         }
         fetchUsers();
@@ -124,11 +132,13 @@ const Game = () =>{
             console.log("Error updating user: ", err);
         }
     }
-    console.log(questionList);
+
     return(
         <>
             <div className="game-root">
-                <div className="game-container">
+                {loading && <Loading />} 
+                {error && <HandleError message = {error}/>}
+                {!loading && <div className="game-container">
                     <div className ="game-card">
                         {numberOfQuestionsAnswered >= 10 ? (
                             <>
@@ -153,6 +163,7 @@ const Game = () =>{
                     </div>
               
                 </div>
+                }
             </div>
   
         </>
