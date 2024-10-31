@@ -71,4 +71,13 @@ router.get("/api/users/tests", async(req, res) =>{
 })
 
 
+router.get("/", async(req, res) =>{
+    try{
+        const users = await User.getUsers()
+        res.json({status: true, data: users})
+    } catch (err){
+        res.status(500).json({status: false, message: err});
+    }
+})
+
 module.exports = router;
